@@ -33,3 +33,15 @@ const dataTwo = new Promise((resolve, reject) => {
 });
 
 Promise.all([dataOne, dataTwo]).then((result) => console.log(result));
+
+// Promise example Nr2
+
+const promiseOne = Promise.resolve('Promise One Resolved');
+const promiseTwo = 10;
+const promiseThree = new Promise((resolve, reject) => {
+  setTimeout(resolve, 2000, 'Promise Three Resolved');
+});
+
+Promise.all([promiseOne, promiseTwo, promiseThree]).then((values) =>
+  console.log(values)
+);
