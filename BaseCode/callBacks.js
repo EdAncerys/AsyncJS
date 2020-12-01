@@ -2,12 +2,24 @@
 
 console.log('Hello from callBack. CallStack Starts');
 
-const loginUser = (email, password) => {
+const loginUser = (email, password, callBack) => {
   setTimeout(() => {
     console.log(`User login data: ${email} ${password}`);
-    return { userEmail: email };
+    callBack({ userEmail: email });
   }, 2000);
 };
 
-loginUser('frodo@email.com', 'password');
+const userData = (email, callBack) => {
+  setTimeout(() => {
+    callBack(['Data01', 'Data02', 'Data03']);
+  }, 1000);
+};
+
+loginUser('frodo@email.com', 'password', (data) => {
+  console.log(data);
+  userData(data.userEmail, (data) => {
+    console.log(data);
+  });
+});
+
 console.log('End of CallStack');
