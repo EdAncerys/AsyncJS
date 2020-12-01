@@ -1,35 +1,32 @@
 'use strict';
 
-const userDataOne = (email) => {
+console.log('Hello from asyncAwait. Call Stack Starts');
+const timeOut = () => {
   setTimeout(() => {
-    console.log('User Data One');
-    return `User Data One email ${email}`;
-    // callBack([`User Data One email ${email}`]);
-  }, 1000);
-};
-
-const userDataTwo = (email) => {
-  setTimeout(() => {
-    console.log('User Data Two');
-    callBack([`User Data Two email ${email}`]);
+    console.log('Call After 2s');
   }, 2000);
 };
 
-const userDataThree = (email) => {
-  setTimeout(() => {
-    console.log('User Data Three');
-    callBack([`User Data Three email ${email}`]);
-  }, 3000);
-};
+async function asyncCallOne() {
+  console.log('Making asyncCall One');
 
-async function asyncCall() {
-  console.log('Making asyncCall');
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
 
-  const dataOne = await userDataOne('frodo@email.com');
-  const dataTwo = await userDataTwo('ben@email.com');
-  const dataThree = await userDataThree('dover@email.com');
-
-  console.log(userDataOne, userDataTwo, userDataThree);
+  console.log(data);
 }
 
-asyncCall();
+async function asyncCallTwo() {
+  console.log('Making asyncCall Two');
+
+  const res = await fetch('https://jsonplaceholder.typicode.com/comments');
+  const data = await res.json();
+
+  console.log(data);
+}
+
+asyncCallOne();
+asyncCallTwo();
+timeOut();
+
+console.log('End of CallStack');
