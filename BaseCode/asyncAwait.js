@@ -1,6 +1,7 @@
 'use strict';
 
 console.log('Hello from asyncAwait. Call Stack Starts');
+
 const timeOut = () => {
   setTimeout(() => {
     console.log('Call After 2s');
